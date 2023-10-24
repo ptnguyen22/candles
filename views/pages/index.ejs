@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Babe's Candles</title>
+  </head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <body>
+    <%- include("../partials/header"); %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Candle ID#</th>
+          <th scope="col">Wax Type</th>
+          <th scope="col">Wax Brand</th>
+          <th scope="col">Wax Weight</th>
+          <th scope="col">FO Name</th>
+          <th scope="col">FO Percent</th>
+          <th scope="col">Wick Type</th>
+          <th scope="col">Wick Size</th>
+          <th scope="col">Number of Wicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% candles.forEach(function(candle) { %>
+        <tr>
+          <td><%= candle.cid.cid %></td>
+          <td>
+            <% candle.waxes.forEach(function(wax) { %> <%= wax.type %> <% }); %>
+          </td>
+          <td>
+            <% candle.waxes.forEach(function(wax){ %> <%= wax.brand %> <% }); %>
+          </td>
+          <td><%= candle.cid.weight %></td>
+          <td>
+            <% candle.fos.forEach(function(fo) { %> 
+              <%= fo.name %>
+              <% }); %>
+          </td>
+          <td>
+            <% candle.fos.forEach(function(fo){ %> 
+              <%= fo.percent %>
+              <% }); %>
+          </td>
+          <td>
+            <% candle.wicks.forEach(function(wick) { %>
+              <%= wick.type %>
+              <% }); %>
+          </td>
+          <td>
+            <% candle.wicks.forEach(function(wick){ %>
+              <%= wick.size %>
+              <% }); %>
+          </td>
+          <td>
+            <% candle.wicks.forEach(function(wick){ %>
+              <%= wick.wicknum %>
+              <% }); %>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

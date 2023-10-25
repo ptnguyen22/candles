@@ -14,9 +14,9 @@
       <thead>
         <tr>
           <th scope="col">Candle ID#</th>
+          <th scope="col">Wax Weight</th>
           <th scope="col">Wax Type</th>
           <th scope="col">Wax Brand</th>
-          <th scope="col">Wax Weight</th>
           <th scope="col">FO Name</th>
           <th scope="col">FO Percent</th>
           <th scope="col">Wick Type</th>
@@ -28,37 +28,48 @@
         <% candles.forEach(function(candle) { %>
         <tr>
           <td><%= candle.cid.cid %></td>
-          <td>
-            <% candle.waxes.forEach(function(wax) { %> <%= wax.type %> <% }); %>
-          </td>
-          <td>
-            <% candle.waxes.forEach(function(wax){ %> <%= wax.brand %> <% }); %>
-          </td>
           <td><%= candle.cid.weight %></td>
           <td>
-            <% candle.fos.forEach(function(fo) { %> 
-              <%= fo.name %>
-              <% }); %>
+            <% candle.waxes.forEach(function(wax, index) { %> <%= wax.type %> <%
+            if(index!=candle.waxes.length-1) { %>
+            <br />
+            <% } %> <% }); %>
           </td>
           <td>
-            <% candle.fos.forEach(function(fo){ %> 
-              <%= fo.percent %>
-              <% }); %>
+            <% candle.waxes.forEach(function(wax, index){ %> <%= wax.brand %> <%
+            if(index!=candle.waxes.length-1) { %>
+            <br />
+            <% } %><% }); %>
           </td>
           <td>
-            <% candle.wicks.forEach(function(wick) { %>
-              <%= wick.type %>
-              <% }); %>
+            <% candle.fos.forEach(function(fo, index) { %> <%= fo.name %> <%
+            if(index!=candle.fos.length-1) { %>
+            <br />
+            <% } %> <% }); %>
           </td>
           <td>
-            <% candle.wicks.forEach(function(wick){ %>
-              <%= wick.size %>
-              <% }); %>
+            <% candle.fos.forEach(function(fo, index){ %> <%= fo.percent %> <%
+            if(index!=candle.fos.length-1) { %>
+            <br />
+            <% } %> <% }); %>
           </td>
           <td>
-            <% candle.wicks.forEach(function(wick){ %>
-              <%= wick.wicknum %>
-              <% }); %>
+            <% candle.wicks.forEach(function(wick, index) { %> <%= wick.type %>
+            <% if(index!=candle.wicks.length-1) { %>
+            <br />
+            <% } %> <% }); %>
+          </td>
+          <td>
+            <% candle.wicks.forEach(function(wick, index){ %> <%= wick.size %>
+            <% if(index!=candle.wicks.length-1) { %>
+            <br />
+            <% } %> <% }); %>
+          </td>
+          <td>
+            <% candle.wicks.forEach(function(wick, index){ %> <%= wick.wicknum
+            %> <% if(index!=candle.wicks.length-1) { %>
+            <br />
+            <% } %> <% }); %>
           </td>
         </tr>
         <% }); %>

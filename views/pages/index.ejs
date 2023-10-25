@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="./styles/index.css" />
   <body>
     <%- include("../partials/header"); %>
-    <table class="table">
-      <thead>
+    <table class="table table-striped">
+      <thead class="thead-dark">
         <tr>
-          <th scope="col">Candle ID#</th>
-          <th scope="col">Wax Weight</th>
+          <th scope="col">Date Created</th>
+          <th scope="col">Wax Weight (oz)</th>
           <th scope="col">Wax Type</th>
           <th scope="col">Wax Brand</th>
           <th scope="col">FO Name</th>
@@ -27,7 +27,7 @@
       <tbody>
         <% candles.forEach(function(candle) { %>
         <tr>
-          <td><%= candle.cid.cid %></td>
+          <td><%= candle.cid.made.toDateString().substring(3) %></td>
           <td><%= candle.cid.weight %></td>
           <td>
             <% candle.waxes.forEach(function(wax, index) { %> <%= wax.type %> <%

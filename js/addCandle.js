@@ -13,7 +13,6 @@ async function createNewCandle(date, weight, total){
       resolve(res.rows[0].cid);
     })
   })
-  console.log(cid);
   return cid;
 }
 
@@ -61,7 +60,6 @@ async function addFO(cid, name, brand, percent){
 
 //Creates all aspects of a candle and inserts to all db tables
 async function insertCandle(data) {
-  console.log(data);
   let cid = await createNewCandle(data.datecreated, data.weight, data.totalFOpercent);
   //ERROR adding to candles
   if(!cid){
@@ -70,6 +68,9 @@ async function insertCandle(data) {
   let waxes = [];
   if(Array.isArray(data.waxtype)){
     for(let i=0; i<data.waxtype.length; i++){
+      if(!data.waxpercent[i]){
+        data.waxpercent[i] = "";
+      }
       let res = await addWax(cid, data.waxtype[i], data.waxbrand[i], data.waxpercent[i]);
       if(!res){
         console.log("ERROR ADDING WAX")
@@ -78,6 +79,9 @@ async function insertCandle(data) {
     }
   }
   else {
+    if(!data.waxpercent){
+      data.waxpercent = 100;
+    }
     await addWax(cid, data.waxtype, data.waxbrand, data.waxpercent);
   }
 
@@ -104,8 +108,12 @@ async function insertCandle(data) {
     }
   }
   else{
+    if(!data.fragrancepercent){
+      data.fragrancepercent = 100;
+    }
     await addFO(cid, data.fragrancename, data.fragrancebrand, data.fragrancepercent);
   }
+  console.log(data);
 }
 
 module.exports = { insertCandle }

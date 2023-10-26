@@ -15,7 +15,7 @@
   <script src="./scripts/newcand.js"></script>
   <body>
     <%- include("../partials/header"); %>
-    <form class="border border-success p-3 mt-3 rounded" action="/addtopost/" method="POST">
+    <form class="border border-success p-3 mt-3 rounded" action="/addtopost/" method="POST" id="mainform">
       <div class="row mt-2 pb-3">
         <div class="col-sm">
           <label for="datec">Date Created</label>
@@ -198,18 +198,23 @@
           />
         </div>
         <div class="col-sm">
-          <label for="foperc">Fragrance Percent</label>
+          <label for="foperc">Fragrance Blend</label>
           <input
             type="number"
             class="form-control fragpercent"
-            placeholder="Fragrance Percent"
+            placeholder="Fragrance Blend"
             name="fragrancepercent"
           />
         </div>
       </div>
       <div class="row" style="width: 35%"></div>
+      <a href="/">
       <button class="btn mx-auto mt-3 bg-info" type="submit">Add Candle</button>
+    </a>
     </form>
-    <script></script>
+    <div class="pyro" id="fireworks">
+      <div class="before"></div>
+      <div class="after"></div>
+  </div>
   </body>
 </html>

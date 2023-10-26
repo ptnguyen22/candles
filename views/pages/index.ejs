@@ -15,10 +15,10 @@
         <tr>
           <th scope="col">Date Created</th>
           <th scope="col">Wax Weight (oz)</th>
+          <th scope="col">FO Percent</th>
           <th scope="col">Wax Type</th>
           <th scope="col">Wax Brand</th>
           <th scope="col">FO Name</th>
-          <th scope="col">FO Percent</th>
           <th scope="col">Wick Type</th>
           <th scope="col">Wick Size</th>
           <th scope="col">Number of Wicks</th>
@@ -29,6 +29,7 @@
         <tr>
           <td><%= candle.cid.made.toDateString().substring(3) %></td>
           <td><%= candle.cid.weight %></td>
+          <td><%= candle.cid.fo_percent %></td>
           <td>
             <% candle.waxes.forEach(function(wax, index) { %> <%= wax.type %> <%
             if(index!=candle.waxes.length-1) { %>
@@ -43,12 +44,6 @@
           </td>
           <td>
             <% candle.fos.forEach(function(fo, index) { %> <%= fo.name %> <%
-            if(index!=candle.fos.length-1) { %>
-            <br />
-            <% } %> <% }); %>
-          </td>
-          <td>
-            <% candle.fos.forEach(function(fo, index){ %> <%= fo.percent %> <%
             if(index!=candle.fos.length-1) { %>
             <br />
             <% } %> <% }); %>

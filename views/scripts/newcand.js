@@ -1,5 +1,6 @@
 window.onload = function () {
   let wax = document.querySelectorAll(".wtype");
+  document.getElementById('mydate').valueAsDate = new Date();
   addEventListener("submit", (event) => {
     let form = document.getElementById("mainform");
     form.style.display = "none";

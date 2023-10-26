@@ -2,6 +2,7 @@ const express = require('express');
 const { pool } = require("./js/db");
 const { queryAll } = require('./js/queryCandle');
 const { insertCandle } = require('./js/addCandle')
+const { deleteCandle } = require('./js/deleteCandle');
 
 const app = express();
 const path = require('path');
@@ -22,7 +23,6 @@ app.set("view engine", "ejs");
 //Home page
 app.get("/", async function(req, res) {
   let candle = await queryAll();
-
   res.render(path.join(__dirname, "views/pages/index"),{
     candles: candle
   });
@@ -36,6 +36,12 @@ app.get("/AddCandle", async function(req, res){
 //Process add new candle form data to add to db
 app.post("/addtopost", async function(req, res) {
   await insertCandle(req.body);
+})
+
+//delete candle endpoint
+app.post("/deletecandle", async function(req, res){
+  await deleteCandle(req.body.cid);
+  res.redirect('back');
 })
 app.listen(3000, async function() {
   

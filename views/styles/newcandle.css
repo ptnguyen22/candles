@@ -1,6 +1,6 @@
 form {
-  margin: 0 15% 0 15%;
   border: 3px;
+  background: #fff;
 }
 hr {
   border-top: 3px dashed lightblue;
@@ -14,7 +14,6 @@ hr {
 body, html{
   margin: 0px;
   height: 100%;
-  overflow-y: hidden;
 }
 #fireworks {
   display: none;
@@ -23,7 +22,7 @@ body, html{
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden; }
+}
 
 .pyro > .before, .pyro > .after {
   position: absolute;

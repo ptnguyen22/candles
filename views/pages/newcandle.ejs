@@ -14,208 +14,255 @@
   />
   <script src="./scripts/newcand.js"></script>
   <body>
-    <%- include("../partials/header"); %>
-    <form class="border border-success p-3 mt-3 rounded" action="/addtopost/" method="POST" id="mainform">
-      <div class="row mt-2 pb-3">
-        <div class="col-sm">
-          <label for="datec">Date Created</label>
-          <input
-            type="date"
-            class="form-control"
-            placeholder="Date Created"
-            name="datecreated"
-            id="mydate"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="weight">Weight (oz)</label>
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Weight"
-            name="weight"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="foperc">Total Fragrance Oil Percent</label>
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Fragrance Oil Percent"
-            name="totalFOpercent"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-auto my-auto" style="display: inline-block;">
-          <h4>Waxes</h4>
-        </div>
-        <div class="col-sm ml-0 pl-0">
-          <button
-            class="btn btn-outline-secondary col-sm addButtons"
-            type="button"
-            onclick="insertWax()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+    <div style="display: flex; flex-flow: column; height: 100%;">
+      <%- include("../partials/header"); %>
+      <div
+        id="background"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1 1 auto;
+          background: url('/bgcandle.jpeg');
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          width: 100%;
+        "
+      >
+        <form
+          class="border border-success p-5 rounded"
+          action="/addtopost/"
+          method="POST"
+          id="mainform"
+        >
+          <div class="row mt-2 pb-3">
+            <div class="col-sm">
+              <label for="datec">Date Created</label>
+              <input
+                type="date"
+                class="form-control"
+                placeholder="Date Created"
+                name="datecreated"
+                id="mydate"
               />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="row mt-1 pb-3" id="waxrow">
-        <div class="col-sm">
-          <label for="wtype">Wax Type</label>
-          <input
-            type="text"
-            class="form-control waxtype"
-            placeholder="Wax Type"
-            name="waxtype"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="wbrand">Wax Brand</label>
-          <input
-            type="text"
-            class="form-control waxbrand"
-            placeholder="Wax Brand"
-            name="waxbrand"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="wperc">Wax Percent</label>
-          <input
-            type="number"
-            class="form-control waxpercent"
-            placeholder="Wax Percent"
-            name="waxpercent"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-auto my-auto" style="display: inline-block;">
-          <h4>Wicks</h4>
-        </div>
-        <div class="col-sm ml-0 pl-0">
-          <button
-            class="btn btn-outline-secondary col-sm addButtons"
-            type="button"
-            onclick="insertWick()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            </div>
+            <div class="col-sm">
+              <label for="weight">Weight (oz)</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Weight"
+                name="weight"
               />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="row mt-1 pb-3" id="wickrow">
-        <div class="col-sm">
-          <label for="wicktype">Wick Type</label>
-          <input
-            type="text"
-            class="form-control wicktype"
-            placeholder="Wick Brand"
-            name="wicktype"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="wicksize">Wick Size</label>
-          <input
-            type="text"
-            class="form-control wicksize"
-            placeholder="Wick Size"
-            name="wicksize"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="wicknum">Number of Wicks</label>
-          <input
-            type="number"
-            class="form-control wicknumber"
-            placeholder="Number of Wicks"
-            name="wicknum"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-auto my-auto" style="display: inline-block;">
-          <h4>Fragrance Oil</h4>
-        </div>
-        <div class="col-sm ml-0 pl-0">
-          <button
-            class="btn btn-outline-secondary col-sm addButtons"
-            type="button"
-            onclick="insertFO()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            </div>
+            <div class="col-sm">
+              <label for="foperc">Total Fragrance Oil Percent</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Fragrance Oil Percent"
+                name="totalFOpercent"
               />
-            </svg>
-          </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-auto my-auto" style="display: inline-block">
+              <h4>Waxes</h4>
+            </div>
+            <div class="col-auto">
+              <button
+                class="btn btn-outline-secondary col-sm addButtons"
+                style="border-color: green"
+                type="button"
+                onclick="insertWax()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-plus"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="col-sm ml-0 pl-0">
+              <button
+                class="btn btn-outline-secondary col-sm addButtons"
+                type="button"
+                onclick="removeWax()"
+                style="border-color: red"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-dash"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="row mt-1 pb-3 waxesrow" id="waxrow">
+            <div class="col-sm">
+              <label for="wtype">Wax Type</label>
+              <input
+                type="text"
+                class="form-control waxtype"
+                placeholder="Wax Type"
+                name="waxtype"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="wbrand">Wax Brand</label>
+              <input
+                type="text"
+                class="form-control waxbrand"
+                placeholder="Wax Brand"
+                name="waxbrand"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="wperc">Wax Percent</label>
+              <input
+                type="number"
+                class="form-control waxpercent"
+                placeholder="Wax Percent"
+                name="waxpercent"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-auto my-auto" style="display: inline-block">
+              <h4>Wicks</h4>
+            </div>
+          </div>
+          <div class="row mt-1 pb-3" id="wickrow">
+            <div class="col-sm">
+              <label for="wicktype">Wick Type</label>
+              <input
+                type="text"
+                class="form-control wicktype"
+                placeholder="Wick Brand"
+                name="wicktype"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="wicksize">Wick Size</label>
+              <input
+                type="text"
+                class="form-control wicksize"
+                placeholder="Wick Size"
+                name="wicksize"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="wicknum">Number of Wicks</label>
+              <input
+                type="number"
+                class="form-control wicknumber"
+                placeholder="Number of Wicks"
+                name="wicknum"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto" style="display: inline-block">
+              <h4>Fragrance Oil</h4>
+            </div>
+            <div class="col-auto ml-0 pl-0">
+              <button
+                class="btn btn-outline-secondary col-sm addButtons"
+                type="button"
+                onclick="insertFO()"
+                style="border-color: green"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-plus"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="col-sm ml-0 pl-0">
+              <button
+                class="btn btn-outline-secondary col-sm addButtons"
+                type="button"
+                onclick="removeFO()"
+                style="border-color: red"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-dash"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="row mt-1 pb-3 fragrow" id="fragrancerow">
+            <div class="col-sm">
+              <label for="foname">Fragrance Name</label>
+              <input
+                type="text"
+                class="form-control fragname"
+                placeholder="Fragrance name"
+                name="fragrancename"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="fobrand">Fragrance Brand</label>
+              <input
+                type="text"
+                class="form-control fragbrand"
+                placeholder="Fragrance Brand"
+                name="fragrancebrand"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="foperc">Fragrance Blend</label>
+              <input
+                type="number"
+                class="form-control fragpercent"
+                placeholder="Fragrance Blend"
+                name="fragrancepercent"
+              />
+            </div>
+          </div>
+          <div class="row" style="width: 35%"></div>
+          <a href="/">
+            <button class="btn mx-auto mt-3 bg-info" type="submit">
+              Add Candle
+            </button>
+          </a>
+        </form>
+        <div class="pyro" id="fireworks">
+          <div class="before"></div>
+          <div class="after"></div>
         </div>
       </div>
-      <div class="row mt-1 pb-3" id="fragrancerow">
-        <div class="col-sm">
-          <label for="foname">Fragrance Name</label>
-          <input
-            type="text"
-            class="form-control fragname"
-            placeholder="Fragrance name"
-            name="fragrancename"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="fobrand">Fragrance Brand</label>
-          <input
-            type="text"
-            class="form-control fragbrand"
-            placeholder="Fragrance Brand"
-            name="fragrancebrand"
-          />
-        </div>
-        <div class="col-sm">
-          <label for="foperc">Fragrance Blend</label>
-          <input
-            type="number"
-            class="form-control fragpercent"
-            placeholder="Fragrance Blend"
-            name="fragrancepercent"
-          />
-        </div>
-      </div>
-      <div class="row" style="width: 35%"></div>
-      <a href="/">
-      <button class="btn mx-auto mt-3 bg-info" type="submit">Add Candle</button>
-    </a>
-    </form>
-    <div class="pyro" id="fireworks">
-      <div class="before"></div>
-      <div class="after"></div>
-  </div>
+    </div>
   </body>
 </html>

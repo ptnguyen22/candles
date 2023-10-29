@@ -14,21 +14,29 @@
     <table class="table table-striped" id="myTable">
       <thead class="thead-dark">
         <tr>
-          <th scope="col" class="col-sm-1 text-primary font-weight-bold">Date Created</th>
-          <th scope="col" class="col-sm-1 text-primary font-weight-bold">Wax Weight (oz)</th>
-          <th scope="col" class="col-sm-1 text-primary font-weight-bold">FO Percent</th>
+          <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+            Date Created
+          </th>
+          <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+            Wax Weight (oz)
+          </th>
+          <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+            FO Percent
+          </th>
           <th scope="col" class="text-primary font-weight-bold">Wax Type</th>
           <th scope="col" class="text-primary font-weight-bold">Wax Brand</th>
           <th scope="col" class="text-primary font-weight-bold">FO Name</th>
           <th scope="col" class="text-primary font-weight-bold">Wick Type</th>
           <th scope="col" class="text-primary font-weight-bold">Wick Size</th>
-          <th scope="col" class="col-sm-1 text-primary font-weight-bold"># Wicks</th>
+          <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+            # Wicks
+          </th>
           <th scope="col" class="text-primary font-weight-bold">Delete</th>
         </tr>
       </thead>
       <tbody>
         <% candles.forEach(function(candle) { %>
-        <tr>
+        <tr onclick="gotocandle(event, '<%= candle.cid.cid %>')">
           <td><%= candle.cid.made.toDateString().substring(3) %></td>
           <td><%= candle.cid.weight %></td>
           <td><%= candle.cid.fo_percent %></td>
@@ -69,7 +77,11 @@
             <% } %> <% }); %>
           </td>
           <td>
-            <button class="btn" onclick="deleteCandle(this)" data-cid="<%= candle.cid.cid %>">
+            <button
+              class="btn"
+              onclick="deleteCandle(this)"
+              data-cid="<%= candle.cid.cid %>"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

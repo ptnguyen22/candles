@@ -19,10 +19,12 @@ function insertWax() {
   waxrow.parentNode.insertBefore(newrow, waxrow.nextSibling);
 }
 
-function insertWick() {
-  let wickrow = document.getElementById("wickrow");
-  let newrow = wickrow.cloneNode(true);
-  wickrow.parentNode.insertBefore(newrow, wickrow.nextSibling);
+function removeWax() {
+  let waxes = document.querySelectorAll(".waxesrow");
+  if(waxes.length===1){
+    return;
+  }
+  waxes[waxes.length-1].remove();
 }
 
 function insertFO() {

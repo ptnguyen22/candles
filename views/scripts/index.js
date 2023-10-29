@@ -8,11 +8,23 @@ window.onload = function(){
   }
 }
 
+async function gotocandle(event, cid){
+  console.log(event.target.tagName);
+  console.log(cid);
+  if(event.target.tagName==="BUTTON"){
+    return;
+  }
+  else {
+    window.location.href = "/ViewCandle?cid="+cid;
+  }
+}
+
 async function deleteCandle(element){
-  console.log(element);
   let base_url = window.location.origin;
   let cid = element.dataset.cid;
-  console.log(base_url);
+  if(!confirm("Delete this candle?")){
+    return;
+  }
   await fetch(`${base_url}/deletecandle`, {
     method: 'POST',
     headers: {

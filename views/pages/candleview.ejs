@@ -11,24 +11,118 @@
   <script src="./scripts/candleview.js"></script>
   <body>
     <%- include("../partials/header"); %>
-    <div class="ms-5">
+    <div class="mx-5">
       <form
-        class="mt-3 mb-3"
+        class="mt-3 mb-3 form-horizontal"
         method="post"
         enctype="multipart/form-data"
         action="/uploadImage?cid=<%= candle.cid.cid %>"
       >
-        <div class="row form-group">
-          <label for="myFile" class="col col-md-auto">
-            Upload Candle Picture
-          </label>
-          <input type="file" id="myFile" name="filename" class="col col-sm-auto form-control"/>
-          <input type="submit" class="col col-sm-auto form-control"/>
+        <div class="row">
+          <span class="col col-sm-auto my-auto">
+            <h5 class="my-auto">Upload User Picture</h5>
+          </span>
+          <div class="col col-sm-auto">
+            <input
+              type="file"
+              id="myFile"
+              name="filename"
+              class="col col-sm-=3 form-control"
+            />
+          </div>
+          <div class="col col-sm-3">
+            <input
+              type="submit"
+              class="col col-sm-auto form-control bg-info"
+              value="Upload Picture"
+              style="width: auto"
+            />
+          </div>
         </div>
       </form>
-
-      <img src="<%=candle.image%>" />
-      <p><%=candle.image%></p>
+      <div class="row mt-5 d-flex justify-content-center">
+        <div class="col col-md-auto">
+          <img src="<%=candle.image%>" class="resize rounded" />
+        </div>
+        <div class="col col-lg-auto ms-5">
+          <table class="table table-borderless maintable table-secondary">
+            <tr>
+              <th scope="row" class="text-end">Candle ID:</th>
+              <td><%= candle.cid.cid %></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-end">Date Made:</th>
+              <td><%= candle.cid.made.toDateString().substring(3) %></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-end">Weight:</th>
+              <td><%= candle.cid.weight %> oz</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-end">Fragrance Oil Percent:</th>
+              <td><%= candle.cid.fo_percent%> %</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 d-flex justify-content-center">
+      <div
+        class="col col-auto ms-5 rounded p-2"
+        style="border: 10px solid #53a8b6; box-shadow: 5px 10px 18px #888888"
+      >
+        <h4 class="mt-2 ms-2">Waxes</h4>
+        <table class="table table-borderless infotable">
+          <% candle.waxes.forEach((single) => { %>
+          <tr>
+            <th scope="col">Type:</th>
+            <td scope="col"><%= single.type %></td>
+            <th scope="col" class="col-auto">Brand:</th>
+            <td scope="col" class="col-auto"><%= single.brand %></td>
+            <th scope="col" class="col-auto">Percent:</th>
+            <td scope="col" class="col-auto"><%= single.percent %>%</td>
+          </tr>
+          <%}) %>
+        </table>
+      </div>
+      <div
+        class="col col-auto rounded ms-4 p-2"
+        style="border: 10px solid #79c2d0; box-shadow: 5px 10px 18px #888888"
+      >
+        <h4 class="mt-2 ms-2">Wicks</h4>
+        <table class="table table-borderless infotable">
+          <% candle.wicks.forEach((single) => { %>
+          <tr>
+            <th scope="col" class="col-auto">Type:</th>
+            <td scope="col" class="col-auto"><%= single.type %></td>
+            <th scope="col" class="col-auto">Size:</th>
+            <td scope="col" class="col-auto"><%= single.size %></td>
+            <th scope="col" class="col-auto">Number of Wicks:</th>
+            <td scope="col" class="col-auto"><%= single.wicknum %></td>
+          </tr>
+          <%}) %>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div
+        class="my-4 ms-5 w-auto rounded p-2"
+        style="border: 10px solid #bbe4e9; box-shadow: 5px 10px 18px #888888"
+      >
+        <table class="table table-borderless">
+          <h4 class="mt-2 ms-2">Fragrance Oils</h4>
+          <% candle.fos.forEach((single) => { %>
+          <tr>
+            <th class="col-auto">Name:</th>
+            <td class="col col-auto"><%= single.name %></td>
+            <th class="col-auto">Brand:</th>
+            <td class="col col-auto"><%= single.brand %></td>
+            <th class="col col-auto">Percent:</th>
+            <td class="col col-auto"><%= single.percent %>%</td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
     </div>
   </body>
 </html>

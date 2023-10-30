@@ -1,3 +1,16 @@
 .navbar-brand {
   margin-left: 20px;
 }
+img.resize {
+  height: 200px;
+  width: auto;
+}
+table.maintable{
+  height: 100%;
+}
+table.maintable tr {
+  border-bottom: none !important;
+}
+body {
+  width: 100%;
+}

@@ -46,7 +46,6 @@ app.get("/AddCandle", function(req, res){
 app.get("/ViewCandle", async function (req, res){
   let filenames = await readdir(path.join(__dirname, "imageUploads"));
   let cid = req.query.cid;
-  console.log(`CID: ${cid}`);
   let candle = await querySingle({cid: cid});
 
   const image_found = filenames.filter(str => str.includes(`${cid}_candle`));
@@ -58,7 +57,7 @@ app.get("/ViewCandle", async function (req, res){
     image_url = "./default_candle.jpeg";
   }
   candle.image = image_url;
-  console.log(image_url);
+
   console.log(candle);
   res.render(path.join(__dirname, "views/pages/candleview"),
   {
@@ -69,7 +68,6 @@ app.get("/ViewCandle", async function (req, res){
 //endpoint to upload image
 app.post("/uploadImage", upload.single("filename"), async function(req, res){
   let cid = req.query.cid;
-  console.log("trying to upload image");
   let filenames = await readdir(path.join(__dirname, "imageUploads"));
   const image_found = filenames.filter(str => str.includes(`${cid}_candle`));
   fs.unlink('imageUploads/'+image_found[0], (err) => {

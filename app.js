@@ -9,7 +9,7 @@ const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 const stat = promisify(require('fs').stat)
 
-const { queryAll, querySingle } = require('./js/queryCandle');
+const { queryAll, querySingle, getSimilarCandles } = require('./js/queryCandle');
 const { insertCandle } = require('./js/addCandle')
 const { deleteCandle } = require('./js/deleteCandle');
 
@@ -58,10 +58,12 @@ app.get("/ViewCandle", async function (req, res){
   }
   candle.image = image_url;
 
-  console.log(candle);
+  let matching_candles = await getSimilarCandles(candle.cid, candle.waxes, candle.fos);
+  console.log(matching_candles[0]);
   res.render(path.join(__dirname, "views/pages/candleview"),
   {
-    candle: candle
+    candle: candle,
+    matches: matching_candles
   });
 })
 

@@ -1,14 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <img src="/chome.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Babe's Candles
+      <img
+        src="/chome.svg"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+        alt=""
+      />
+      Babe's Candles
     </a>
 
-  <div class="collapse navbar-collapse" id="navbarconect">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/AddCandle">Add Candle</a> 
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarconect">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/AddCandle">Add Candle</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success me-5" type="submit">Search</button>
+      </form>
+    </div>
   </div>
 </nav>

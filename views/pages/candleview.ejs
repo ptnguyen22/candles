@@ -11,7 +11,7 @@
   <script src="./scripts/candleview.js"></script>
   <body>
     <%- include("../partials/header"); %>
-    <div class="mx-5">
+    <div class="ms-2">
       <form
         class="mt-3 mb-3 form-horizontal"
         method="post"
@@ -66,63 +66,105 @@
         </div>
       </div>
     </div>
-    <div class="mt-5 d-flex justify-content-center">
-      <div
-        class="col col-auto ms-5 rounded p-2"
-        style="border: 10px solid #53a8b6; box-shadow: 5px 10px 18px #888888"
-      >
-        <h4 class="mt-2 ms-2">Waxes</h4>
-        <table class="table table-borderless infotable">
-          <% candle.waxes.forEach((single) => { %>
-          <tr>
-            <th scope="col">Type:</th>
-            <td scope="col"><%= single.type %></td>
-            <th scope="col" class="col-auto">Brand:</th>
-            <td scope="col" class="col-auto"><%= single.brand %></td>
-            <th scope="col" class="col-auto">Percent:</th>
-            <td scope="col" class="col-auto"><%= single.percent %>%</td>
-          </tr>
-          <%}) %>
-        </table>
-      </div>
-      <div
-        class="col col-auto rounded ms-4 p-2"
-        style="border: 10px solid #79c2d0; box-shadow: 5px 10px 18px #888888"
-      >
-        <h4 class="mt-2 ms-2">Wicks</h4>
-        <table class="table table-borderless infotable">
-          <% candle.wicks.forEach((single) => { %>
-          <tr>
-            <th scope="col" class="col-auto">Type:</th>
-            <td scope="col" class="col-auto"><%= single.type %></td>
-            <th scope="col" class="col-auto">Size:</th>
-            <td scope="col" class="col-auto"><%= single.size %></td>
-            <th scope="col" class="col-auto">Number of Wicks:</th>
-            <td scope="col" class="col-auto"><%= single.wicknum %></td>
-          </tr>
-          <%}) %>
-        </table>
+    <div
+      class="container d-flex align-items-center justify-content-center mt-5 w-75"
+    >
+      <div class="row d-flex align-items-stretch justify-content-center">
+        <div class="col col-lg-6 rounded" style="border: 10px solid #a9a9a9">
+          <table class="table table-borderless infotable">
+            <h4 class="mt-2 ms-2">Waxes</h4>
+            <% candle.waxes.forEach((single) => { %>
+            <tr>
+              <th scope="col" class="text-end">Type:</th>
+              <td scope="col" class="text-start"><%= single.type %></td>
+              <th scope="col" class="text-end">Brand:</th>
+              <td scope="col" class="text-start"><%= single.brand %></td>
+              <th scope="col" class="text-end">Percent:</th>
+              <td scope="col" class="text-start"><%= single.percent %>%</td>
+            </tr>
+            <%}) %>
+          </table>
+        </div>
+        <div class="col col-lg-6 rounded" style="border: 10px solid #fecda6">
+          <table class="table table-borderless infotable">
+            <h4 class="mt-2 ms-2">Wicks</h4>
+            <% candle.wicks.forEach((single) => { %>
+            <tr>
+              <th scope="col" class="text-end">Type:</th>
+              <td scope="col" class="text-start"><%= single.type %></td>
+              <th scope="col" class="text-end">Size:</th>
+              <td scope="col" class="text-start"><%= single.size %></td>
+              <th scope="col" class="text-end">Number of Wicks:</th>
+              <td scope="col" class="text-start"><%= single.wicknum %></td>
+            </tr>
+            <%}) %>
+          </table>
+        </div>
+        <div class="row d-flex align-items-stretch justify-content-center p-0">
+          <div
+            class="col col-lg-6 rounded mt-1 h-100"
+            style="border: 10px solid #fecda6"
+          >
+            <table class="table table-borderless w-auto h-auto">
+              <h4 class="mt-2 ms-2">Fragrance Oils</h4>
+              <% candle.fos.forEach((single) => { %>
+              <tr>
+                <th class="text-end">Name:</th>
+                <td class="text-start"><%= single.name %></td>
+                <th class="text-end">Brand:</th>
+                <td class="text-start"><%= single.brand %></td>
+                <th class="text-end">Percent:</th>
+                <td class="text-start"><%= single.percent %>%</td>
+              </tr>
+              <% }) %>
+            </table>
+          </div>
+          <div class="col col-lg-6 mt-1" style="border: 10px solid #a9a9a9">
+            <table class="table table-borderless">
+              <h4 class="mt-2 ms-2">Notes</h4>
+              <% candle.fos.forEach((single) => { %>
+              <tr>
+                <td><textarea rows="3" class="w-100"></textarea></td>
+              </tr>
+              <% }) %>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
-      <div
-        class="my-4 ms-5 w-auto rounded p-2"
-        style="border: 10px solid #bbe4e9; box-shadow: 5px 10px 18px #888888"
-      >
-        <table class="table table-borderless">
-          <h4 class="mt-2 ms-2">Fragrance Oils</h4>
-          <% candle.fos.forEach((single) => { %>
-          <tr>
-            <th class="col-auto">Name:</th>
-            <td class="col col-auto"><%= single.name %></td>
-            <th class="col-auto">Brand:</th>
-            <td class="col col-auto"><%= single.brand %></td>
-            <th class="col col-auto">Percent:</th>
-            <td class="col col-auto"><%= single.percent %>%</td>
-          </tr>
-          <% }) %>
-        </table>
-      </div>
+    <div class="d-flex align-items-center justify-content-center mt-3">
+      <h4>Other wicks with the same waxes and fragrance oils</h4>
+    </div>
+    <div class="mt-3 d-flex justify-content-center align-items-center">
+      <% if(matches===undefined){ %>
+      <table class="table w-auto row">
+        <% matches.forEach((candle)=>{ %>
+        <tr
+          onclick="document.location = '/ViewCandle?cid=<%= candle.cid.cid %>'"
+        >
+          <a href="/ViewCandle?cid=<%= candle.cid.cid %>">
+            <th class="text-end">Wick Type:</th>
+            <td class="text-start">
+              <% candle.wicks.forEach((wick, index)=>{ %> <%= wick.type %> <%
+              if(index!=candle.wicks.length-1){ %><br /><% }}); %>
+            </td>
+            <th class="text-end">Wick Size:</th>
+            <td class="text-start">
+              <% candle.wicks.forEach((wick, index)=>{ %> <%= wick.size %> <%
+              if(index!=candle.wicks.length-1) {%><br /><% }}); %>
+            </td>
+            <th class="text-end">Number of Wicks:</th>
+            <td class="text-start">
+              <% candle.wicks.forEach((wick, index) => { %> <%= wick.wicknum %>
+              <% if(index!=candle.wicks.length-1){ %><br /><% } %> <% }) %>
+            </td>
+          </a>
+        </tr>
+        <% }) %>
+      </table>
+      <% }else{ %>
+      <h1>No Matching Candles</h1>
+      <% } %>
     </div>
   </body>
 </html>

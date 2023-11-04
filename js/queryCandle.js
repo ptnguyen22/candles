@@ -113,4 +113,36 @@ async function getSimilarCandles(cid, waxes, fos){
   return matching_candles;
 }
 
-module.exports = {queryAll, querySingle, getSimilarCandles};
+async function searchForCandle(str){
+  let waxes_query = `select cid from waxes w where '${str}' like '%'||w.type||'%' or '${str}' like '%'||w.brand||'%';`
+  let waxes_found = await new Promise((resolve, reject) => pool.query(waxes_query, async (err, res) => {
+    if(err){
+      reject(err);
+    }
+    resolve(res.rows);
+  }));
+  let waxes_matches = [];
+  if(waxes_found){
+    let promises = waxes_found.map((cid) => {
+      return querySingle(cid);
+    });
+    waxes_matches = await Promise.all(promises);
+  }
+  let wicks_query = `select cid from wicks w where '${str}' like '%'||w.type||'%' or '${str}' like '%'||w.size||'%';`
+  let wicks_found = await new Promise((resolve, reject) => pool.query(wicks_query, async (err, res) => {
+    if(err){
+      reject(err);
+    }
+    resolve(res.rows);
+  }));
+  let wicks_matches = [];
+  if(wicks_found){
+    let promises = wicks_found.map((cid) => {
+      return querySingle(cid);
+    });
+    wicks_matches = await Promise.all(promises);
+  }
+  let all = waxes_matches.concat(wicks_matches);
+  return all;
+}
+module.exports = {queryAll, querySingle, getSimilarCandles, searchForCandle};

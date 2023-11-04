@@ -9,7 +9,7 @@ const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 const stat = promisify(require('fs').stat)
 
-const { queryAll, querySingle, getSimilarCandles } = require('./js/queryCandle');
+const { queryAll, querySingle, getSimilarCandles, searchForCandle } = require('./js/queryCandle');
 const { insertCandle } = require('./js/addCandle')
 const { deleteCandle } = require('./js/deleteCandle');
 
@@ -101,7 +101,17 @@ app.post("/deletecandle", async function(req, res){
   await deleteCandle(req.body.cid);
   res.redirect('back');
 })
+
+app.get('/search', async function(req, res){
+  let term = req.query.term;
+  let candles = await searchForCandle(term);
+  console.log(candles);
+  res.render(path.join(__dirname, "views/pages/search"),
+  {
+    candles: candles
+  });
+})
+
 app.listen(3000, async function() {
-  
   console.log("Server started on port 3000");
 })

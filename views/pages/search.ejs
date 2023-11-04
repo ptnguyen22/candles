@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  </head>
+  <body>
+    <%- include("../partials/header"); %>
+    <div>
+      <table class="table table-striped table-hover" id="myTable">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+              Date Created
+            </th>
+            <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+              Wax Weight (oz)
+            </th>
+            <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+              FO Percent
+            </th>
+            <th scope="col" class="text-primary font-weight-bold">Wax Type</th>
+            <th scope="col" class="text-primary font-weight-bold">Wax Brand</th>
+            <th scope="col" class="text-primary font-weight-bold">FO Name</th>
+            <th scope="col" class="text-primary font-weight-bold">Wick Type</th>
+            <th scope="col" class="text-primary font-weight-bold">Wick Size</th>
+            <th scope="col" class="col-sm-1 text-primary font-weight-bold">
+              # Wicks
+            </th>
+            <th scope="col" class="text-primary font-weight-bold">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% candles.forEach(function(candle) { %>
+          <tr onclick="document.location = '/ViewCandle?cid=<%= candle.cid.cid %>'">
+            <td><%= candle.cid.made.toDateString().substring(3) %></td>
+            <td><%= candle.cid.weight %></td>
+            <td><%= candle.cid.fo_percent %></td>
+            <td>
+              <% candle.waxes.forEach(function(wax, index) { %> <%= wax.type %> <%
+              if(index!=candle.waxes.length-1) { %>
+              <br />
+              <% } %> <% }); %>
+            </td>
+            <td>
+              <% candle.waxes.forEach(function(wax, index){ %> <%= wax.brand %> <%
+              if(index!=candle.waxes.length-1) { %>
+              <br />
+              <% } %><% }); %>
+            </td>
+            <td>
+              <% candle.fos.forEach(function(fo, index) { %> <%= fo.name %> <%
+              if(index!=candle.fos.length-1) { %>
+              <br />
+              <% } %> <% }); %>
+            </td>
+            <td>
+              <% candle.wicks.forEach(function(wick, index) { %> <%= wick.type %>
+              <% if(index!=candle.wicks.length-1) { %>
+              <br />
+              <% } %> <% }); %>
+            </td>
+            <td>
+              <% candle.wicks.forEach(function(wick, index){ %> <%= wick.size %>
+              <% if(index!=candle.wicks.length-1) { %>
+              <br />
+              <% } %> <% }); %>
+            </td>
+            <td>
+              <% candle.wicks.forEach(function(wick, index){ %> <%= wick.wicknum
+              %> <% if(index!=candle.wicks.length-1) { %>
+              <br />
+              <% } %> <% }); %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,8 +1,8 @@
 const { pool } = require("./db");
 
 //insert new candle into candles table
-async function createNewCandle(date, weight, total){
-  let query = `insert into candles values ((default), '${date}', ${weight}, ${total}) returning cid;`;
+async function createNewCandle(date, weight, total, container){
+  let query = `insert into candles values ((default), '${date}', ${weight}, ${total}, '${container}') returning cid;`;
   let cid = await new Promise((resolve, reject) => {
     pool.query(query, async(err,res) => {
       if (err) {
@@ -60,7 +60,7 @@ async function addFO(cid, name, brand, percent){
 
 //Creates all aspects of a candle and inserts to all db tables
 async function insertCandle(data) {
-  let cid = await createNewCandle(data.datecreated, data.weight, data.totalFOpercent);
+  let cid = await createNewCandle(data.datecreated, data.weight, data.totalFOpercent, data.container);
   //ERROR adding to candles
   if(!cid){
     return;

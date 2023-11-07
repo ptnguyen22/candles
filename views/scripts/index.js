@@ -9,9 +9,8 @@ window.onload = function(){
 }
 
 async function gotocandle(event, cid){
-  console.log(event.target.tagName);
-  console.log(cid);
-  if(event.target.tagName==="BUTTON"){
+  console.log(event.target.parent);
+  if(event.target.tagName==="BUTTON" || event.target.parentElement.tagName==="BUTTON"){
     return;
   }
   else {

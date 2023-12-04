@@ -52,6 +52,11 @@ async function queryAll(){
     }
     resolve(res);
   }));
+  console.log("RET>ROWS")
+  console.log(ret.rows);
+  if(!ret.rows) {
+    return [];
+  }
   candles = [];
   let promises = ret.rows.map((row) => {
     return queryWrap(row);
@@ -73,6 +78,9 @@ async function querySingle(cid){
 
 //get all parts of a candle and package into object
 async function queryWrap(cid){
+  if(!cid) {
+    return
+  }
   let waxes = await queryWaxes(cid.cid);
   let wicks = await queryWicks(cid.cid);
   let fos = await queryFO(cid.cid);

@@ -14,7 +14,7 @@
   />
   <script src="./scripts/newcand.js"></script>
   <body>
-    <div style="display: flex; flex-flow: column; height: 100%;">
+    <div style="display: flex; flex-flow: column; height: 100%">
       <%- include("../partials/header"); %>
       <div
         id="background"
@@ -35,7 +35,7 @@
           method="POST"
           id="mainform"
         >
-          <div class="row mt-2 pb-3">
+          <div class="row mt-2 pb-3 justify-content-bottom align-items-bottom">
             <div class="col-sm">
               <label for="datec">Date Created</label>
               <input
@@ -53,6 +53,15 @@
                 class="form-control"
                 placeholder="Weight"
                 name="weight"
+              />
+            </div>
+            <div class="col-sm">
+              <label for="container">Container</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Container"
+                name="container"
               />
             </div>
             <div class="col-sm">

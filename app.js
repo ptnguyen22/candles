@@ -33,6 +33,8 @@ app.set("view engine", "ejs");
 //Home page
 app.get("/", async function(req, res) {
   let candle = await queryAll();
+  console.log("CANDLE");
+  console.log(candle);
   res.render(path.join(__dirname, "views/pages/index"),{
     candles: candle
   });
@@ -99,7 +101,8 @@ app.post("/addtopost", async function(req, res) {
 //delete candle endpoint
 app.post("/deletecandle", async function(req, res){
   await deleteCandle(req.body.cid);
-  res.redirect('back');
+  console.log("TEST");
+  res.redirect('/');
 })
 
 app.get('/search', async function(req, res){
